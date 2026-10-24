@@ -1,7 +1,6 @@
 <?php
 
-// Gunakan 'development' saat mengembangkan aplikasi agar JSON lebih mudah dibaca.
-// Ubah kembali menjadi 'production' untuk lingkungan produksi.
+
 define('APP_ENV', 'production');
 
 class Database
