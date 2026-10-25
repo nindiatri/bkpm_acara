@@ -1,4 +1,6 @@
+
 <?php
+
 class Mahasiswa
 {
     private PDO $db;
@@ -17,18 +19,27 @@ class Mahasiswa
 
     public function find(int $id): array|false
     {
-        $stmt = $this->db->prepare('SELECT * FROM mahasiswa WHERE id = :id');
-        $stmt->execute([':id' => $id]);
+        $stmt = $this->db->prepare(
+            'SELECT * FROM mahasiswa WHERE id = :id'
+        );
+
+        $stmt->execute([
+            ':id' => $id
+        ]);
+
         return $stmt->fetch();
     }
 
     /**
-     * Validasi NIM duplikat (Tugas Mandiri 2).
-     * $exceptId dipakai saat update agar data itu sendiri tidak dianggap duplikat.
+     * Memeriksa apakah NIM sudah terdaftar.
+     * $exceptId digunakan saat update agar data itu sendiri
+     * tidak dianggap sebagai NIM duplikat.
      */
-    public function nimExists(string $nim, ?int $exceptId = null): bool
-    {
-        $sql    = 'SELECT COUNT(*) FROM mahasiswa WHERE nim = :nim';
+    public function nimExists(
+        string $nim,
+        ?int $exceptId = null
+    ): bool {
+        $sql = 'SELECT COUNT(*) FROM mahasiswa WHERE nim = :nim';
         $params = [':nim' => $nim];
 
         if ($exceptId !== null) {
@@ -38,25 +49,41 @@ class Mahasiswa
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute($params);
+
         return (int) $stmt->fetchColumn() > 0;
     }
 
-    public function create(array $data): string
-    {
-        if ($this->nimExists((string) $data['nim'])) {
-            throw new DomainException('NIM sudah terdaftar');
-        }
 
+public function create(array $data): string
+{
+    if ($this->nimExists((string) $data['nim'])) {
+        throw new DomainException('NIM sudah terdaftar');
+    }
+
+    try {
         $stmt = $this->db->prepare(
-            'INSERT INTO mahasiswa (nim, nama, prodi) VALUES (:nim, :nama, :prodi)'
+            'INSERT INTO mahasiswa (nim, nama, prodi)
+             VALUES (:nim, :nama, :prodi)'
         );
+
         $stmt->execute([
             ':nim'   => $data['nim'],
             ':nama'  => $data['nama'],
             ':prodi' => $data['prodi'],
         ]);
+
         return $this->db->lastInsertId();
+
+    } catch (PDOException $e) {
+        Response::json(500, [
+            'success' => false,
+            'message' => 'Terjadi kesalahan pada server'
+        ]);
+
+        throw $e;
     }
+}
+
 
     public function update(int $id, array $data): void
     {
@@ -65,8 +92,11 @@ class Mahasiswa
         }
 
         $stmt = $this->db->prepare(
-            'UPDATE mahasiswa SET nim = :nim, nama = :nama, prodi = :prodi WHERE id = :id'
+            'UPDATE mahasiswa
+             SET nim = :nim, nama = :nama, prodi = :prodi
+             WHERE id = :id'
         );
+
         $stmt->execute([
             ':nim'   => $data['nim'],
             ':nama'  => $data['nama'],
@@ -77,7 +107,12 @@ class Mahasiswa
 
     public function delete(int $id): void
     {
-        $stmt = $this->db->prepare('DELETE FROM mahasiswa WHERE id = :id');
-        $stmt->execute([':id' => $id]);
+        $stmt = $this->db->prepare(
+            'DELETE FROM mahasiswa WHERE id = :id'
+        );
+
+        $stmt->execute([
+            ':id' => $id
+        ]);
     }
 }

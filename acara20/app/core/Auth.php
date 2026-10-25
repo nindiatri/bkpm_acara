@@ -1,23 +1,32 @@
+
 <?php
 
 class Auth
 {
     const SECRET = 'kunci_rahasia_workshop_2026';
 
+    // Mengubah data menjadi format Base64 URL-safe
     private static function base64url(string $data): string
     {
         return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
     }
 
+    // Membuat JWT dengan masa berlaku 5 menit
     public static function generateToken(array $payload): string
     {
         $header = self::base64url(
-            json_encode(['alg' => 'HS256', 'typ' => 'JWT'])
+            json_encode([
+                'alg' => 'HS256',
+                'typ' => 'JWT'
+            ])
         );
 
-        $payload['exp'] = time() + 3600;
+        // Token berlaku selama 300 detik (5 menit)
+        $payload['exp'] = time() + 300;
 
-        $payloadEnc = self::base64url(json_encode($payload));
+        $payloadEnc = self::base64url(
+            json_encode($payload)
+        );
 
         $signature = self::base64url(
             hash_hmac(
@@ -31,6 +40,7 @@ class Auth
         return "$header.$payloadEnc.$signature";
     }
 
+    // Memeriksa apakah token valid dan belum kedaluwarsa
     public static function validateToken(string $token)
     {
         $parts = explode('.', $token);
@@ -41,6 +51,7 @@ class Auth
 
         [$header, $payload, $signature] = $parts;
 
+        // Membuat ulang tanda tangan untuk memeriksa token
         $valid = self::base64url(
             hash_hmac(
                 'sha256',
@@ -54,6 +65,7 @@ class Auth
             return false;
         }
 
+        // Membaca payload JWT
         $decodedPayload = strtr($payload, '-_', '+/');
         $padding = strlen($decodedPayload) % 4;
 
@@ -61,12 +73,16 @@ class Auth
             $decodedPayload .= str_repeat('=', 4 - $padding);
         }
 
-        $data = json_decode(base64_decode($decodedPayload), true);
+        $data = json_decode(
+            base64_decode($decodedPayload),
+            true
+        );
 
         if (!is_array($data) || !isset($data['exp'])) {
             return false;
         }
 
+        // Menolak token yang sudah kedaluwarsa
         if ($data['exp'] <= time()) {
             return false;
         }
@@ -74,6 +90,7 @@ class Auth
         return $data;
     }
 
+    // Memastikan pengguna memiliki token yang valid
     public static function requireAuth(): array
     {
         $headers = function_exists('getallheaders')
@@ -84,6 +101,7 @@ class Auth
             ?? $headers['authorization']
             ?? ($_SERVER['HTTP_AUTHORIZATION'] ?? '');
 
+        // Memeriksa format Authorization: Bearer <token>
         if (!preg_match('/Bearer\s+(\S+)/i', $authHeader, $m)) {
             Response::json(401, [
                 'success' => false,
