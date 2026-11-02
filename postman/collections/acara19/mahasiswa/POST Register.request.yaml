@@ -1,0 +1,20 @@
+$kind: http-request
+description: |-
+  Controller: AuthController::register()  
+  Fungsi: Mendaftarkan pengguna baru dengan mengirim nama, email, dan password. Email harus valid dan belum terdaftar.  
+  Autentikasi: Publik (tidak perlu token).
+url: http://localhost/BkpmWebServer/acara19/public/register
+method: POST
+body:
+  type: json
+  content: "{ \r
+
+    \    \"nama\": \"Budi Santoso\", \r
+
+    \    \"email\": \"budi.acara21example.com\", \r
+
+    \    \"password\": \"rahasia123\" \r
+
+    }"
+examples: .resources/POST Register.resources/examples
+order: 1000

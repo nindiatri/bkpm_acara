@@ -1,0 +1,37 @@
+$kind: http-example
+request:
+  url: http://localhost/BkpmWebServer/acara19/public/register
+  method: POST
+  body:
+    type: json
+    content: "{ \r
+
+      \    \"nama\": \"Budi Santoso\", \r
+
+      \    \"email\": \"budi.acara21@example.com\", \r
+
+      \    \"password\": \"rahasia123\" \r
+
+      }"
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    Date: Fri, 30 Oct 2026 06:29:56 GMT
+    Server: Apache/2.4.54 (Win64) OpenSSL/1.1.1q PHP/8.1.10
+    X-Powered-By: PHP/8.1.10
+    Access-Control-Allow-Origin: "*"
+    Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+    Access-Control-Allow-Headers: Content-Type
+    Content-Length: "50"
+    Keep-Alive: timeout=5, max=100
+    Connection: Keep-Alive
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "Registrasi berhasil"
+      }
+order: 1000

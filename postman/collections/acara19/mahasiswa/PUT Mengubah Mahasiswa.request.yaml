@@ -1,0 +1,26 @@
+$kind: http-request
+description: |-
+  Controller: MahasiswaController::update($id)  
+  Fungsi: Memperbarui data mahasiswa berdasarkan id. Field nim, nama, dan prodi wajib dikirim semuanya.  
+  Autentikasi: Perlu header Authorization: Bearer .
+url: http://localhost/BkpmWebServer/acara19/public/mahasiswa/?id=13
+method: PUT
+queryParams:
+  id: "13"
+body:
+  type: json
+  content: " {\r
+
+    \    \"id\": \"13\",\r
+
+    \    \"nim\": \"2201005\",\r
+
+    \    \"nama\": \"Shofi Perubahan\",\r
+
+    \    \"prodi\": \"Teknik Informatika\",\r
+
+    \    \"created_at\": \"2026-10-30 14:08:31\"\r
+
+    \  }"
+examples: .resources/PUT Mengubah Mahasiswa.resources/examples
+order: 4000

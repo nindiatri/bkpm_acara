@@ -1,0 +1,44 @@
+$kind: http-example
+request:
+  url: http://localhost/BkpmWebServer/acara19/public/mahasiswa/?id=15
+  method: PUT
+  queryParams:
+    id: "15"
+  body:
+    type: json
+    content: "{\r
+
+      \        \"id\": 15,\r
+
+      \        \"nim\": \"2201006\",\r
+
+      \        \"nama\": \"Shofi Perubahan11\",\r
+
+      \        \"prodi\": \"Teknik Informatika\",\r
+
+      \        \"created_at\": \"2026-10-30 14:37:21\"\r
+
+      \    }"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Date: Fri, 30 Oct 2026 07:38:42 GMT
+    Server: Apache/2.4.54 (Win64) OpenSSL/1.1.1q PHP/8.1.10
+    X-Powered-By: PHP/8.1.10
+    Access-Control-Allow-Origin: "*"
+    Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+    Access-Control-Allow-Headers: Content-Type
+    Content-Length: "95"
+    Keep-Alive: timeout=5, max=100
+    Connection: Keep-Alive
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "Data mahasiswa berhasil diperbarui",
+        "errors": []
+      }
+order: 2000

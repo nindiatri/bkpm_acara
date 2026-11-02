@@ -1,0 +1,36 @@
+$kind: http-example
+request:
+  url: http://localhost/BkpmWebServer/acara19/public/register
+  method: POST
+  body:
+    type: json
+    content: "{ \r
+
+      \    \"nama\": \"Budi Santoso\", \r
+
+      \    \"email\": \"budi.acara21example.com\", \r
+
+      \    \"password\": \"rahasia123\" \r
+
+      }"
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    Date: Fri, 30 Oct 2026 06:58:27 GMT
+    Server: Apache/2.4.54 (Win64) OpenSSL/1.1.1q PHP/8.1.10
+    X-Powered-By: PHP/8.1.10
+    Access-Control-Allow-Origin: "*"
+    Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+    Access-Control-Allow-Headers: Content-Type
+    Content-Length: "56"
+    Connection: close
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "Format email tidak valid"
+      }
+order: 2000

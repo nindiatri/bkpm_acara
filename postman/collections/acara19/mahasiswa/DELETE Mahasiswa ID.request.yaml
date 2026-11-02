@@ -1,0 +1,11 @@
+$kind: http-request
+description: |-
+  Controller: MahasiswaController::destroy($id)  
+  Fungsi: Menghapus data mahasiswa berdasarkan id.  
+  Autentikasi: Perlu header Authorization: Bearer .
+url: http://localhost/BkpmWebServer/acara19/public/mahasiswa/?id=13
+method: DELETE
+queryParams:
+  id: "13"
+examples: .resources/DELETE Mahasiswa ID.resources/examples
+order: 5000

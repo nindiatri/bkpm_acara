@@ -1,0 +1,20 @@
+$kind: http-request
+description: |-
+  Controller: MahasiswaController::index()  
+  Fungsi: Menampilkan seluruh data mahasiswa. Jika ditambahkan parameter ?id=, hanya menampilkan satu mahasiswa dengan id tersebut.  
+  Autentikasi: Publik (tidak perlu token).
+url: http://localhost/BkpmWebServer/acara19/public/mahasiswa
+method: GET
+body:
+  type: json
+  content: "{ \r
+
+    \    \"nama\": \"Budi Santoso\", \r
+
+    \    \"email\": \"budi.acara21@example.com\", \r
+
+    \    \"password\": \"rahasia123\" \r
+
+    }"
+examples: .resources/GET Mahasiswa.resources/examples
+order: 2000
