@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: API Sistem Informasi Akademik (MVC)
+  version: 1.0.0
+servers:
+  - url: http://localhost/BkpmWebServer/acara22/public
+paths: 
+  /register:
+    post:
+      summary: Mendaftarkan pengguna baru (AuthController::register)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nama: { type: string }
+                email: { type: string }
+                password: { type: string }
+      responses:
+        '201': { description: Registrasi berhasil }
+        '409': { description: Email sudah terdaftar }
+        '422': { description: Validasi data gagal }
+  /mahasiswa:
+    put:
+      summary: Memperbarui data mahasiswa (MahasiswaController::update)
+      security: [ { bearerAuth: [] } ]
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Data berhasil diperbarui }
+        '404': { description: Data mahasiswa tidak ditemukan }
+    delete:
+      summary: Menghapus data mahasiswa (MahasiswaController::destroy)
+      security: [ { bearerAuth: [] } ]
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Data berhasil dihapus }
+        '404': { description: Data mahasiswa tidak ditemukan }
+components:
+    securitySchemes:
+      bearerAuth:
+        type: http
+        scheme: bearer
+        bearerFormat: JWT
