@@ -110,7 +110,7 @@ Controller: AuthController::login()
   "data": {
     "token": "eyJ...",
     "token_type": "Bearer",
-    "expires_in": 3600,
+    "expires_in": 300,
     "user": { "id": 1, "nama": "Budi Santoso", "email": "budi@example.com" }
   }
 }
@@ -154,7 +154,7 @@ Contoh: `GET /mahasiswa` (semua data) atau `GET /mahasiswa?id=1` (satu data)
 {
   "success": true,
   "data": [
-    { "id": 1, "nim": "2301001", "nama": "Budi Santoso", "prodi": "Teknik Informatika" }
+    { "id": 1, "nim": "230100101", "nama": "Budi Santoso", "prodi": "Teknik Informatika" }
   ]
 }
 ```
@@ -163,7 +163,7 @@ Contoh: `GET /mahasiswa` (semua data) atau `GET /mahasiswa?id=1` (satu data)
 ```json
 {
   "success": true,
-  "data": { "id": 1, "nim": "2301001", "nama": "Budi Santoso", "prodi": "Teknik Informatika" }
+  "data": { "id": 1, "nim": "230100101", "nama": "Budi Santoso", "prodi": "Teknik Informatika" }
 }
 ```
 
@@ -191,12 +191,12 @@ Controller: MahasiswaController::store()
 **Request Body:**
 | Field | Tipe   | Wajib | Keterangan                |
 |-------|--------|-------|---------------------------|
-| nim   | string | Ya    | Harus berupa angka, unik  |
+| nim   | string | Ya    | 9 digit angka, unik       |
 | nama  | string | Ya    | Nama mahasiswa            |
 | prodi | string | Ya    | Program studi             |
 
 ```json
-{ "nim": "2301001", "nama": "Budi Santoso", "prodi": "Teknik Informatika" }
+{ "nim": "230100101", "nama": "Budi Santoso", "prodi": "Teknik Informatika" }
 ```
 
 **Response 201 Created:**
@@ -204,7 +204,7 @@ Controller: MahasiswaController::store()
 {
   "success": true,
   "message": "Data mahasiswa berhasil ditambahkan",
-  "data": { "id": 1, "nim": "2301001", "nama": "Budi Santoso", "prodi": "Teknik Informatika" }
+  "data": { "id": 1, "nim": "230100101", "nama": "Budi Santoso", "prodi": "Teknik Informatika" }
 }
 ```
 
@@ -219,16 +219,16 @@ Controller: MahasiswaController::store()
   "success": false,
   "message": "Validasi data gagal",
   "errors": {
-    "nim": "NIM harus berupa angka",
+    "nim": "NIM harus terdiri dari 9 digit angka",
     "nama": "Field nama wajib diisi",
     "prodi": "Field prodi wajib diisi"
   }
 }
 ```
 
-**Response 409 Conflict** (NIM sudah terdaftar):
+**Response 422 Unprocessable Entity** (NIM sudah terdaftar):
 ```json
-{ "success": false, "message": "NIM sudah terdaftar" }
+{ "success": false, "message": "NIM sudah terdaftar", "errors": { "nim": "NIM sudah terdaftar" } }
 ```
 
 **Response 400 Bad Request** (body bukan JSON valid):
@@ -260,7 +260,7 @@ Controller: MahasiswaController::update($id)
 **Request Body:** sama dengan `POST /mahasiswa` (`nim`, `nama`, dan `prodi` semuanya wajib diisi).
 
 ```json
-{ "nim": "2301001", "nama": "Budi Santoso", "prodi": "Sistem Informasi" }
+{ "nim": "230100101", "nama": "Budi Santoso", "prodi": "Sistem Informasi" }
 ```
 
 **Response 200 OK:**
@@ -277,9 +277,9 @@ Controller: MahasiswaController::update($id)
 
 **Response 422 Unprocessable Entity:** sama seperti `POST /mahasiswa`.
 
-**Response 409 Conflict** (NIM dipakai mahasiswa lain):
+**Response 422 Unprocessable Entity** (NIM dipakai mahasiswa lain):
 ```json
-{ "success": false, "message": "NIM sudah terdaftar" }
+{ "success": false, "message": "NIM sudah terdaftar", "errors": { "nim": "NIM sudah terdaftar" } }
 ```
 
 **Response 400 Bad Request** (body bukan JSON valid):

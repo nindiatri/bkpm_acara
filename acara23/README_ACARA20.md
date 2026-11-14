@@ -31,7 +31,7 @@ Jika sebelumnya kamu memakai Environment Postman, atur `base_url` ke alamat fold
 - Body > raw > JSON:
 ```json
 {
-  "nim": "230099",
+  "nim": "230100099",
   "nama": "Mahasiswa Uji",
   "prodi": "Teknik Informatika"
 }
@@ -44,7 +44,7 @@ Jika sebelumnya kamu memakai Environment Postman, atur `base_url` ke alamat fold
 - Body:
 ```json
 {
-  "nim": "230099",
+  "nim": "230100099",
   "nama": "Mahasiswa Uji Diubah",
   "prodi": "Teknik Informatika"
 }

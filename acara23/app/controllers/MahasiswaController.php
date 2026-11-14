@@ -59,9 +59,11 @@ class MahasiswaController
         try {
             $id = $this->model->create($data);
         } catch (DomainException $e) {
-            Response::json(409, [
+            // NIM duplikat = data tidak dapat diproses -> 422 (sesuai TC-03/TC-09)
+            Response::json(422, [
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
+                'errors' => ['nim' => $e->getMessage()]
             ]);
         } catch (PDOException $e) {
             $this->handleDbError($e);
@@ -103,9 +105,11 @@ class MahasiswaController
         try {
             $this->model->update($id, $data);
         } catch (DomainException $e) {
-            Response::json(409, [
+            // NIM duplikat = data tidak dapat diproses -> 422 (sesuai TC-03/TC-09)
+            Response::json(422, [
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
+                'errors' => ['nim' => $e->getMessage()]
             ]);
         } catch (PDOException $e) {
             $this->handleDbError($e);
@@ -179,9 +183,10 @@ class MahasiswaController
     private function handleDbError(PDOException $e): never
     {
         if ($e->getCode() === '23000') {
-            Response::json(409, [
+            Response::json(422, [
                 'success' => false,
-                'message' => 'NIM sudah terdaftar'
+                'message' => 'NIM sudah terdaftar',
+                'errors' => ['nim' => 'NIM sudah terdaftar']
             ]);
         }
 
