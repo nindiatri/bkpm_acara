@@ -1,4 +1,4 @@
-name: local
+name: Local
 values:
   - key: base_url
     value: ''

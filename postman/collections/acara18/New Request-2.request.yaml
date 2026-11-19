@@ -1,0 +1,18 @@
+$kind: http-request
+name: New Request
+url: http://localhost/BkpmWebServer/acara18/public/mahasiswa?id=17
+method: PUT
+queryParams:
+  id: "17"
+body:
+  type: json
+  content: "{\r
+
+    \    \"nim\": \"123456789\",\r
+
+    \    \"nama\": \"nindi ubah\",\r
+
+    \    \"prodi\" : \"teknik\"\r
+
+    }"
+order: 3000

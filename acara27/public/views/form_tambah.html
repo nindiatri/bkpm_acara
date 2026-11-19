@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Mahasiswa</title>
+    <script>
+        // Lindungi halaman: tanpa token, kembali ke login
+        if (!localStorage.getItem('token')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body>
+    <h1>Tambah Mahasiswa</h1>
+
+    <form id="form-tambah">
+        <p><label>NIM<br><input type="text" id="nim" required></label></p>
+        <p><label>Nama<br><input type="text" id="nama" required></label></p>
+        <p><label>Program Studi<br><input type="text" id="prodi" required></label></p>
+        <p><label>Foto (JPG/PNG, maks. 2 MB)<br>
+            <input type="file" id="foto" accept=".jpg,.jpeg,.png,image/jpeg,image/png"></label></p>
+        <button type="submit">Simpan</button>
+        <a href="dashboard.html">Batal</a>
+    </form>
+    
+    <script src="notifikasi.js"></script>
+    <script src="validasi.js"></script>
+    <script src="form_tambah.js"></script>
+
+</body>
+</html>

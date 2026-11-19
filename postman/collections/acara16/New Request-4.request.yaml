@@ -1,0 +1,5 @@
+$kind: http-request
+name: New Request
+url: http://localhost/BkpmWebServer/acara16/api/mahasiswa.php/28
+method: DELETE
+order: 5000

@@ -1,0 +1,16 @@
+$kind: http-request
+name: New Request
+url: http://localhost/BkpmWebServer/acara18/public/mahasiswa
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"nim\": \"e23456789\",\r
+
+    \    \"nama\": \"nindi ubah\",\r
+
+    \    \"prodi\" : \"indutrsi\"\r
+
+    }"
+order: 9000

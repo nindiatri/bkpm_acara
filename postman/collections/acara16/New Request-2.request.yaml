@@ -1,0 +1,16 @@
+$kind: http-request
+name: New Request
+url: http://localhost/BkpmWebServer/acara16/api/mahasiswa.php
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"nim\": \"23090\",\r
+
+    \    \"nama\": \"Dewi\",\r
+
+    \    \"email\": \"dewi@gmail.com\"\r
+
+    }"
+order: 3000

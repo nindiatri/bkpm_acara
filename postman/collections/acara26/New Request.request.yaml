@@ -1,0 +1,17 @@
+$kind: http-request
+url: http://localhost/BkpmWebServer/acara26/public/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"email\": \"admin@example.com\",\r
+
+    \  \"password\": \"admin123\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: Bearer token admin
+order: 1000

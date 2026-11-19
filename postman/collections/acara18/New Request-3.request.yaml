@@ -1,0 +1,7 @@
+$kind: http-request
+name: New Request
+url: http://localhost/BkpmWebServer/acara18/public/mahasiswa?id=17
+method: DELETE
+queryParams:
+  id: "17"
+order: 4000

@@ -2,3 +2,12 @@ name: Local
 values:
   - key: base_url
     value: ''
+  - key: '{{base_url}}'
+    value: ''
+    disabled: true
+  - key: '{{base_url}}'
+    value: ''
+    disabled: true
+  - key: '{{base_url}}'
+    value: ''
+    disabled: true

@@ -1,0 +1,7 @@
+$kind: http-request
+name: New Request
+url: http://localhost/BkpmWebServer/acara18/public/mahasiswa?id=999
+method: GET
+queryParams:
+  id: "999"
+order: 5000

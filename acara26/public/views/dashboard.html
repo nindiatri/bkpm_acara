@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <script>
+        // Langkah 4: lindungi halaman, tanpa token langsung kembali ke login
+        if (!localStorage.getItem('token')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body>
+    <h1>Dashboard Admin</h1>
+    <p id="info-user"></p>
+    <button type="button" id="btn-logout">Logout</button>
+
+    <h2>Ringkasan</h2>
+    <p>Total mahasiswa: <strong id="total-mahasiswa">-</strong></p>
+
+    <h2>Data Mahasiswa</h2>
+    <button type="button" id="btn-tambah" class="aksi-admin">Tambah</button>
+
+    <form id="form-mahasiswa" hidden>
+        <h3 id="judul-form">Tambah Mahasiswa</h3>
+        <p><label>NIM<br><input type="text" id="nim" required></label></p>
+        <p><label>Nama<br><input type="text" id="nama" required></label></p>
+        <p><label>Program Studi<br><input type="text" id="prodi" required></label></p>
+        <p><label>Foto (JPG/PNG, maks. 2 MB)<br>
+            <input type="file" id="foto" accept=".jpg,.jpeg,.png,image/jpeg,image/png"></label></p>
+        <p id="info-foto-lama" hidden>Kosongkan jika tidak ingin mengganti foto.</p>
+        <button type="submit">Simpan</button>
+        <button type="button" id="btn-batal">Batal</button>
+    </form>
+
+    <p id="status"></p>
+    <table id="tabel-mahasiswa" border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Foto</th><th>NIM</th><th>Nama</th><th>Program Studi</th>
+                <th class="aksi-admin">Aksi</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
