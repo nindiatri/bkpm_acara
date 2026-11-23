@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{base_url}}/mahasiswa?id=99999"
+method: PUT
+queryParams:
+  id: "99999"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0bhu}}"
+order: 10000

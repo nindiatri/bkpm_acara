@@ -1,0 +1,100 @@
+$kind: collection
+variables:
+  - key: json_web_token_0lh1
+    secret: true
+    disabled: false
+  - key: json_web_token_0k60
+    secret: true
+    disabled: false
+  - key: json_web_token_0gq6
+    secret: true
+    disabled: false
+  - key: json_web_token_00tc
+    secret: true
+    disabled: false
+  - key: json_web_token_10il
+    secret: true
+    disabled: false
+  - key: json_web_token_0bhu
+    secret: true
+    disabled: false
+  - key: json_web_token_082b
+    secret: true
+    disabled: false
+  - key: json_web_token_0c84
+    secret: true
+    disabled: false
+  - key: json_web_token_02br
+    secret: true
+    disabled: false
+  - key: json_web_token_0p0j
+    secret: true
+    disabled: false
+scripts:
+  - type: http:beforeRequest
+    code: "if (pm.environment.name !== 'Production') { return; }\r
+
+      \r
+
+      const cached = pm.environment.get('bot_cookie');\r
+
+      const exp = Number(pm.environment.get('bot_cookie_exp') || 0);\r
+
+      \r
+
+      if (cached && Date.now() < exp) {\r
+
+      \    pm.request.headers.upsert({ key: 'Cookie', value: '__test=' + cached });\r
+
+      \    return;\r
+
+      }\r
+
+      \r
+
+      const base = pm.environment.get('base_url');\r
+
+      \r
+
+      pm.sendRequest({ url: base + '/', method: 'GET' }, function (err, res) {\r
+
+      \    if (err) { console.log('Gagal ambil tantangan:', err); return; }\r
+
+      \r
+
+      \    const m = res.text().match(/toNumbers\\(\"([0-9a-f]+)\"\\)/g);\r
+
+      \    if (!m || m.length < 3) {\r
+
+      \        console.log('Tidak ada tantangan bot (mungkin sudah lolos)');\r
+
+      \        return;\r
+
+      \    }\r
+
+      \r
+
+      \    const hex = s => s.match(/\"([0-9a-f]+)\"/)[1];\r
+
+      \    const dec = CryptoJS.AES.decrypt(\r
+
+      \        { ciphertext: CryptoJS.enc.Hex.parse(hex(m[2])) },\r
+
+      \        CryptoJS.enc.Hex.parse(hex(m[0])),\r
+
+      \        { iv: CryptoJS.enc.Hex.parse(hex(m[1])), mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.NoPadding }\r
+
+      \    );\r
+
+      \    const cookie = dec.toString(CryptoJS.enc.Hex);\r
+
+      \r
+
+      \    pm.environment.set('bot_cookie', cookie);\r
+
+      \    pm.environment.set('bot_cookie_exp', Date.now() + 60 * 60 * 1000);\r
+
+      \    pm.request.headers.upsert({ key: 'Cookie', value: '__test=' + cookie });\r
+
+      });"
+    language: text/javascript

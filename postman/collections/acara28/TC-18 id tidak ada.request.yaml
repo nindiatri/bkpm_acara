@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{base_url}}/mahasiswa?id=99999"
+method: DELETE
+queryParams:
+  id: "99999"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0p0j}}"
+order: 18000

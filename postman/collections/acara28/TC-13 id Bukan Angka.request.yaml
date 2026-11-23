@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{base_url}}/mahasiswa?id=abc"
+method: PUT
+queryParams:
+  id: abc
+body:
+  type: json
+  content: "{\r
+
+    \  \"nim\": \"250100001\",\r
+
+    \  \"nama\": \"Uji Production Edit\",\r
+
+    \  \"prodi\": \"Sistem Informasi\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_082b}}"
+order: 13000

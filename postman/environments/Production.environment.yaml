@@ -1,0 +1,8 @@
+name: Production
+values:
+  - key: base_url
+    value: ''
+  - key: bot_cookie
+    value: ''
+  - key: bot_cookie_exp
+    value: ''

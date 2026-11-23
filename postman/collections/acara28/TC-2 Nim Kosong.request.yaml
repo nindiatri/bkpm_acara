@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{base_url}}/mahasiswa"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"nim\": \"\",\r
+
+    \  \"nama\": \"Uji NIM Kosong\",\r
+
+    \  \"prodi\": \"Teknik Informatika\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0gq6}}"
+order: 5000

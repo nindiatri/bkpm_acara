@@ -1,4 +1,17 @@
 $kind: http-request
-url: ""
-method: GET
+url: http://localhost/BkpmWebServer/acara20/public/mahasiswa
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"email\": \"nindia.cantik@gmail.com\",\r
+
+    \  \"password\": \"rahasia123\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_02is}}"
 order: 1000

@@ -1,0 +1,7 @@
+$kind: http-request
+url: http://localhost/BkpmWebServer/acara20/public/mahasiswa
+method: POST
+body:
+  type: json
+  content: ""
+order: 3000

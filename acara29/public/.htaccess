@@ -1,0 +1,10 @@
+RewriteEngine On
+# Tambahan hosting: teruskan header Authorization (token JWT) ke PHP.
+# Tanpa ini sebagian server membuang header tersebut sehingga login "tidak terbaca".
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubah Mahasiswa</title>
+    <script>
+        // Lindungi halaman: tanpa token, kembali ke login
+        if (!localStorage.getItem('token')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body>
+    <h1>Ubah Mahasiswa</h1>
+
+    <form id="form-edit">
+        <p><label>NIM<br><input type="text" id="nim" required></label></p>
+        <p><label>Nama<br><input type="text" id="nama" required></label></p>
+        <p><label>Program Studi<br><input type="text" id="prodi" required></label></p>
+
+        <p>Foto saat ini:<br>
+            <img id="foto-lama" width="100" alt="Foto saat ini" hidden>
+            <span id="tanpa-foto">-</span>
+        </p>
+        <p><label>Ganti foto (JPG/PNG, maks. 2 MB)<br>
+            <input type="file" id="foto" accept=".jpg,.jpeg,.png,image/jpeg,image/png"></label><br>
+            <small>Kosongkan jika tidak ingin mengganti foto.</small></p>
+
+        <button type="submit">Simpan Perubahan</button>
+        <a href="dashboard.html">Batal</a>
+    </form>
+    <script src="util.js"></script>
+    <script src="notifikasi.js"></script>
+    <script src="validasi.js"></script>
+    <script src="form_edit.js"></script>
+</body>
+</html>

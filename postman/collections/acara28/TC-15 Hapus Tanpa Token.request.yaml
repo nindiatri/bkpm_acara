@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{base_url}}/mahasiswa?id=21"
+method: DELETE
+queryParams:
+  id: "21"
+order: 15000

@@ -3,15 +3,15 @@ description: |-
   Controller: AuthController::register()  
   Fungsi: Mendaftarkan pengguna baru dengan mengirim nama, email, dan password. Email harus valid dan belum terdaftar.  
   Autentikasi: Publik (tidak perlu token).
-url: http://localhost/BkpmWebServer/acara19/public/register
+url: "{{base_url}}/register"
 method: POST
 body:
   type: json
   content: "{ \r
 
-    \    \"nama\": \"Budi Santoso\", \r
+    \    \"nama\": \"Nindia Anggraini\", \r
 
-    \    \"email\": \"budi.acara21example.com\", \r
+    \    \"email\": \"nindia.cantik123@gmail.com\", \r
 
     \    \"password\": \"rahasia123\" \r
 

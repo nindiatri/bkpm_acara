@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{base_url}}/mahasiswa?id=21"
+method: PUT
+queryParams:
+  id: "21"
+body:
+  type: json
+  content: "{\r
+
+    \  \"nim\": \"277277277\",\r
+
+    \  \"nama\": \"Uji NIM Milik Orang Lain\",\r
+
+    \  \"prodi\": \"Teknik Informatika\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{json_web_token_0c84}}"
+order: 9000
