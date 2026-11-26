@@ -2,14 +2,11 @@
 
 // =====================================================================
 //  PENGATURAN DATABASE UNTUK INFINITYFREE
-//  Ganti 4 nilai di bawah ini dengan data dari panel InfinityFree
-//  (menu "MySQL Databases"). Tulis persis sama, perhatikan huruf
-//  besar/kecil dan jangan ada spasi di awal/akhir.
 // =====================================================================
-if (!defined('DB_HOST')) define('DB_HOST', 'ISI_MYSQL_HOSTNAME');   // contoh: sql123.infinityfree.com
-if (!defined('DB_NAME')) define('DB_NAME', 'ISI_NAMA_DATABASE');    // contoh: if0_12345678_workshop
-if (!defined('DB_USER')) define('DB_USER', 'ISI_USERNAME');         // contoh: if0_12345678
-if (!defined('DB_PASS')) define('DB_PASS', 'ISI_PASSWORD');         // password akun hosting InfinityFree
+if (!defined('DB_HOST')) define('DB_HOST', 'sql302.infinityfree.com');   
+if (!defined('DB_NAME')) define('DB_NAME', 'if0_43502835_dbworkshop');    
+if (!defined('DB_USER')) define('DB_USER', 'if0_43502835');        
+if (!defined('DB_PASS')) define('DB_PASS', 'nindi277');        
 
 // Mode produksi: pesan JSON dibuat ringkas (tanpa pretty print).
 if (!defined('APP_ENV')) {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
     <script>
         // Lindungi halaman: tanpa token, kembali ke login
         if (!localStorage.getItem('token')) {
@@ -12,22 +13,26 @@
     </script>
 </head>
 <body>
-    <h1>Tambah Mahasiswa</h1>
+    <div class="container" style="max-width: 600px;">
+        <h1>Tambah Mahasiswa</h1>
+        <p>Lengkapi formulir di bawah ini untuk menambahkan data mahasiswa baru.</p>
 
-    <form id="form-tambah">
-        <p><label>NIM<br><input type="text" id="nim" required></label></p>
-        <p><label>Nama<br><input type="text" id="nama" required></label></p>
-        <p><label>Program Studi<br><input type="text" id="prodi" required></label></p>
-        <p><label>Foto (JPG/PNG, maks. 2 MB)<br>
-            <input type="file" id="foto" accept=".jpg,.jpeg,.png,image/jpeg,image/png"></label></p>
-        <button type="submit">Simpan</button>
-        <a href="dashboard.html">Batal</a>
-    </form>
+        <form id="form-tambah" style="margin-top: 20px;">
+            <p><label for="nim">NIM</label><input type="text" id="nim" required></p>
+            <p><label for="nama">Nama Lengkap</label><input type="text" id="nama" required></p>
+            <p><label for="prodi">Program Studi</label><input type="text" id="prodi" required></p>
+            <p><label for="foto">Foto Profil (JPG/PNG, maks. 2 MB)</label>
+                <input type="file" id="foto" accept=".jpg,.jpeg,.png,image/jpeg,image/png"></p>
+            
+            <div style="margin-top: 24px; display: flex; align-items: center;">
+                <button type="submit">Simpan Data</button>
+                <a href="dashboard.html" class="btn btn-batal">Batal</a>
+            </div>
+        </form>
+    </div>
     
-    <script src="util.js"></script>
     <script src="notifikasi.js"></script>
     <script src="validasi.js"></script>
     <script src="form_tambah.js"></script>
-
 </body>
 </html>

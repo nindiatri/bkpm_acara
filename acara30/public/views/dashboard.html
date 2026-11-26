@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Sistem Informasi</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // Langkah 4: lindungi halaman, tanpa token langsung kembali ke login
+        if (!localStorage.getItem('token')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header-bar">
+            <div>
+                <h1>Dashboard Admin</h1>
+                <p id="info-user" class="user-badge"></p>
+            </div>
+            <button type="button" id="btn-logout">Logout</button>
+        </div>
+
+        <div class="stat-card">
+            <span>Ringkasan Mahasiswa:</span> Total <strong><span id="total-mahasiswa">-</span></strong> Mahasiswa
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <h2>Data Mahasiswa</h2>
+            <button type="button" id="btn-tambah" class="aksi-admin">+ Tambah Mahasiswa</button>
+        </div>
+
+        <form id="form-mahasiswa" hidden style="background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid var(--border); margin: 20px 0;">
+            <h3 id="judul-form">Tambah Mahasiswa</h3>
+            <p><label>NIM<input type="text" id="nim" required></label></p>
+            <p><label>Nama<input type="text" id="nama" required></label></p>
+            <p><label>Program Studi<input type="text" id="prodi" required></label></p>
+            <p><label>Foto (JPG/PNG, maks. 2 MB)
+                <input type="file" id="foto" accept=".jpg,.jpeg,.png,image/jpeg,image/png"></label></p>
+            <p id="info-foto-lama" hidden><small style="color: var(--text-muted);">Kosongkan jika tidak ingin mengganti foto.</small></p>
+            <div style="margin-top: 15px;">
+                <button type="submit">Simpan</button>
+                <button type="button" id="btn-batal">Batal</button>
+            </div>
+        </form>
+
+        <p id="status"></p>
+        <div class="table-responsive">
+            <table id="tabel-mahasiswa">
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">Foto</th>
+                        <th style="width: 140px;">NIM</th>
+                        <th>Nama</th>
+                        <th>Program Studi</th>
+                        <th class="aksi-admin" style="width: 150px; text-align: center;">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="notifikasi.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

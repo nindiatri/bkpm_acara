@@ -1,0 +1,22 @@
+#  .htaccess UTAMA - letakkan di folder htdocs (InfinityFree)
+#  Fungsi: aplikasi hidup di folder "public", sedangkan folder
+#  "app" (kode & password database) tidak boleh dibuka dari browser.
+RewriteEngine On
+
+# Acara 30 Langkah 2: Mengarahkan seluruh trafik HTTP ke HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 1) Blokir folder internal agar tidak bisa dibuka lewat browser
+RewriteRule ^(app|docs|sql|database)(/|$) - [F,L]
+
+# 2) Blokir berkas rahasia/teknis
+RewriteRule (^|/)\.(ht|git) - [F,L]
+RewriteRule \.(sql|md|log|yaml|yml|env|bak)$ - [F,L]
+
+# 3) Alamat utama (/) diarahkan ke halaman login
+RewriteRule ^$ /views/login.html [R=302,L]
+
+# 4) Semua permintaan lain diteruskan ke folder public
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ public/$1 [L]

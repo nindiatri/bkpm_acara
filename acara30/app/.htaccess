@@ -1,0 +1,3 @@
+# Lapisan Pertahanan Tambahan Acara 30
+# Mencegah akses langsung ke folder app dari browser
+Require all denied

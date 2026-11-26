@@ -1,0 +1,11 @@
+RewriteEngine On
+# Tambahan hosting: teruskan header Authorization (token JWT) ke PHP.
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# Acara 30 Langkah 2: Mengarahkan seluruh trafik ke HTTPS (Force HTTPS Redirect)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
